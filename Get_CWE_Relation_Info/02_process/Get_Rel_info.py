@@ -10,7 +10,7 @@ from modules.get_cwe_info import get_parents, get_children
 from typing import Dict
 
 
-def assign_cwe_relationships(dict_of_cwes : Dict, out_path : str) -> None:
+def assign_cwe_relationships(dict_of_cwes : Dict, out_path : str, thread_count : int) -> None:
 
     dict_out = {}
 
@@ -21,7 +21,7 @@ def assign_cwe_relationships(dict_of_cwes : Dict, out_path : str) -> None:
 
 
     try:
-        with ThreadPoolExecutor(max_workers=25) as executor:
+        with ThreadPoolExecutor(max_workers=thread_count) as executor:
             for result in executor.map(lambda p: get_relation_info(*p), dict_of_cwes.items()):
                 dict_out[result[0]] = result[1]
                 i += 1
@@ -73,9 +73,10 @@ def __main__():
     args = handle_args()
     out_path = args.out_path
     json_path = args.json_path
+    n_threads = args.n_threads
     with open(json_path, 'r') as f:
         dict_of_cwes = json.load(f)
-    assign_cwe_relationships(dict_of_cwes, out_path)
+    assign_cwe_relationships(dict_of_cwes, out_path, n_threads)
 
 if __name__ == "__main__":
     __main__()

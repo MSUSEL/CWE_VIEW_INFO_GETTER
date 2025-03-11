@@ -1,6 +1,4 @@
 import argparse
-
-from requests import HTTPError
 from modules.get_cwe_info import *
 from modules.CWE_NODE import CWE_NODE
 from modules.progress_bar import print_progress_bar
@@ -12,11 +10,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 
-def cwe_info_gather( list_of_cwes_in_nvd : List[str], out_path : str) -> None:
+def cwe_info_gather( list_of_cwes_in_nvd : List[str], out_path : str, thread_count : int) -> None:
     '''
     creates a json file that is that maps cwe-id to CWE_NODE structure filled with all fields but parents and children
     :param list_of_cwes_in_nvd: List of CWEs to get info for
     :param out_path: output path for cwe_info_gather()
+    :param thread_count: number of threads in use at one time
     :return: None
     '''
     #data structures
@@ -24,7 +23,7 @@ def cwe_info_gather( list_of_cwes_in_nvd : List[str], out_path : str) -> None:
     count = len(list_of_cwes_in_nvd)
     i = 0
     try:
-        with ThreadPoolExecutor(max_workers=25) as executor:
+        with ThreadPoolExecutor(max_workers=thread_count) as executor:
             results = executor.map(get_cwe_info, list_of_cwes_in_nvd)
             for result in results:
                 dict_of_cwe_nodes[result[1]] = result[0]
@@ -80,10 +79,11 @@ def __main__():
     args = handle_args()
     out_path = args.out_path
     json_path = args.json_path
+    threads_count = args.n_threads
     with open(json_path) as f:
         list_of_cwes_in_nvd = list(json.load(f))
 
-    cwe_info_gather(list_of_cwes_in_nvd, out_path)
+    cwe_info_gather(list_of_cwes_in_nvd, out_path, threads_count)
 
 if __name__ == "__main__":
     __main__()
