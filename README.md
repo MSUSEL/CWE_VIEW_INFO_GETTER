@@ -1,7 +1,5 @@
 # CWE_VIEW_INFO_GETTER
 
-## This is a tool for gathering information about CVE-1000 
-
 ### Output
 
 ```json
