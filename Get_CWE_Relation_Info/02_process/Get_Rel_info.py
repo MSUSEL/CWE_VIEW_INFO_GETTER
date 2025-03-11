@@ -73,7 +73,7 @@ def __main__():
     args = handle_args()
     out_path = args.out_path
     json_path = args.json_path
-    n_threads = args.n_threads
+    n_threads = int(args.n_threads)
     with open(json_path, 'r') as f:
         dict_of_cwes = json.load(f)
     assign_cwe_relationships(dict_of_cwes, out_path, n_threads)

@@ -79,7 +79,7 @@ def __main__():
     args = handle_args()
     out_path = args.out_path
     json_path = args.json_path
-    threads_count = args.n_threads
+    threads_count = int(args.n_threads)
     with open(json_path) as f:
         list_of_cwes_in_nvd = list(json.load(f))
 
