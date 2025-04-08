@@ -39,7 +39,7 @@ class MeasureAdderFlat(AddingStrategy):
         if "measures" not in pique_definition_file_location:
             raise KeyError("Pique Definition File has no measures section")
         children = {}
-        children[f"{node.name} NPM Diagnostic"] = {}
+        children[f"{node.name} NPM_IMPROVED Diagnostic"] = {}
         children[f"{node.name} Trivy Diagnostic"] = {}
         children[f"{node.name} Grype Diagnostic"] = {}
         pique_definition_file_location["measures"][f"{node.name} Measure"] = {
@@ -54,7 +54,7 @@ class DiagnosticAdder(AddingStrategy):
     def add_node(self, node: CWE_NODE, pique_definition_file_location: Dict):
         if "diagnostics" not in pique_definition_file_location:
             raise KeyError("Pique Definition File has no diagnostics section")
-        tools = ["NPM", "Grype", "Trivy"]
+        tools = ["NPM_IMPROVED", "Grype", "Trivy"]
         for tool in tools:
             node_info = {
                 "description" : node.description,
