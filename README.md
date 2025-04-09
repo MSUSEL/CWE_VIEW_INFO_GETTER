@@ -23,6 +23,8 @@ the cwes in the product factors will be the cwes with out parents in the cwe vie
 
 # Must have pique def fram that looks like this 
 
+This is an example feel free to change it ot meet your needs
+
 ```json
 {
     "name": "WEB-qm-CWE-1000_trimmed_flat_measures",
