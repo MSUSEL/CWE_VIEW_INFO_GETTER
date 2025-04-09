@@ -21,6 +21,51 @@ the cwes in the product factors will be the cwes with out parents in the cwe vie
 - To get info on children and parents use the child ID as a key in the Dictionary
 
 
+# Must have pique def fram that looks like this 
+
+```json
+{
+    "name": "WEB-qm-CWE-1000_trimmed_flat_measures",
+    "additionalData": {},
+    "global_config": {
+        "benchmark_strategy": "calibration.WebBenchmarker",
+        "normalizer": "pique.evaluation.DefaultNormalizer",
+        "weights_strategy": "pique.calibration.NaiveWeighter"
+    },
+    "factors": {
+        "tqi": {
+            "Overall Quality": {
+                "description": "The combined high-level score the software has received across the board."
+            }
+        },
+        "quality_aspects": {
+            "Security": {
+                "description": "This is the highest level score for security for the software",
+                "eval_strategy": "evaluation.QualityAspectEval",
+                "children": {
+                    "Product_Factor CWE-703": {},
+                    "Product_Factor CWE-693": {},
+                    "Product_Factor CWE-284": {},
+                    "Product_Factor CWE-707": {},
+                    "Product_Factor CWE-710": {},
+                    "Product_Factor CWE-664": {},
+                    "Product_Factor CWE-691": {},
+                    "Product_Factor CWE-435": {},
+                    "Product_Factor CWE-682": {},
+                    "Product_Factor CWE-697": {},
+                    "Product_Factor pf-other": {},
+                    "Product_Factor pf-unknown": {}
+                }
+            }
+        },
+        "product_factors": {}
+    },
+    "measures":{}.
+    "diagnostics":{}
+}
+
+```
+
 # Run
 
 - Run the run.sh script
