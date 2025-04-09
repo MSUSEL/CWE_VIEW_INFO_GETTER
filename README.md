@@ -60,7 +60,7 @@ the cwes in the product factors will be the cwes with out parents in the cwe vie
         },
         "product_factors": {}
     },
-    "measures":{}.
+    "measures":{},
     "diagnostics":{}
 }
 
