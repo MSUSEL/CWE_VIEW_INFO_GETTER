@@ -21,9 +21,9 @@ the cwes in the product factors will be the cwes with out parents in the cwe vie
 - To get info on children and parents use the child ID as a key in the Dictionary
 
 
-# Must have pique def fram that looks like this 
+# Minimum json file needed for script to fill out pique data
 
-This is an example feel free to change it ot meet your needs
+This is an examplw with names and normalizers and what not... The script will insert the CWE view that you need into the proper locations.
 
 ```json
 {
